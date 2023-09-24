@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>My To Do List</h2>
+            <input type="text" placeholder="Enter the list..." id="inputBx">
+            <button onclick="addItem()" id="addButton">Add</button>
+            <ul id="list"></ul>
+        </div>
+    </div>
+   <script>
+   let inputBx = document.querySelector('#inputBx');
+   let list = document.querySelector('#list');
+   let addButton= document.querySelector('#addButton');
+   let addItem = () => {
+    let inputValue=inputBx.value.trim();
+    if(inputValue !== ''){
+        let listItem = document.createElement("li");
+        listItem.innerHTML = inputValue+'<i></i>';
+    
+        listItem.addEventListener("click", function(){
+            this.classList.toggle('done');
+            
+        });
+        listItem.querySelector("i").addEventListener("click",function(){
+            listItem.remove();
+            
+        });
+        list.appendChild(listItem);
+        inputBx.value="";
+        
+   }
+   
+};
+addButton.addEventListener("click",addItem);
+   </script>
+</body>
+</html>
